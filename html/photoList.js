@@ -1,0 +1,1 @@
+var photos = ["./photos/2023_5_31_fotky/small/cat.jpg", "./photos/2023_5_31_fotky/small/image.jpg", "./photos/2023_5_31_fotky/small/jonatan-pie-3l3RwQdHRHg-unsplash.jpg", "./photos/2023_5_31_fotky/small/Moon.jpg", "./photos/2023_5_31_fotky/small/panda.jpg", "./photos/2023_5_31_fotky/small/sunflower.jpg", ];

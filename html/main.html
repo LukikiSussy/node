@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8" />
+    <title>Titulek</title>
+ 
+    <style>
+        .photo {
+            width: 10vw;
+            height: 10vw;
+            padding: 20px;
+        }
+
+        #container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+    </style>
+
+    <body>
+        <div id="container">
+
+        </div>
+ 
+    </body>
+
+    <script src="photoList.js"></script>
+ 
+    <script>
+        for (const photo of photos) {
+            const newPhoto = document.createElement("div");
+            console.log(photo)
+            newPhoto.src=photo;
+            newPhoto.classList.add('photo');
+            document.getElementById("container").appendChild(newPhoto);
+        }
+
+    </script>
+</head>
+</html>
+

@@ -1,9 +1,11 @@
 import sharp from 'sharp';
-import { readdir, mkdir } from 'node:fs/promises';
+import { readdir, mkdir, writeFile } from 'node:fs/promises';
 
 
 
 const ROOT = "photos";
+
+var photoList = [];
 
 
 
@@ -18,23 +20,14 @@ try {
 
     console.log(`---${photoDirent.name}---`);
 
-    const photos = await readdir(`${ROOT}/${photoDirent.name}`, {withFileTypes: true})
+    const photos = await readdir(`${ROOT}/${photoDirent.name}`, {withFileTypes: true});
 
 
-    try {
-      const bigDir = await mkdir(`${ROOT}/${photoDirent.name}/big`);
-    }
-    catch (err) {
-    }
-    try {
-      const smallDir = await mkdir(`${ROOT}/${photoDirent.name}/small`);
-    }
-    catch (err) {
-    }
-
+    const bigDir = await mkdir(`${ROOT}/${photoDirent.name}/big`, { recursive: true });
+    const smallDir = await mkdir(`${ROOT}/${photoDirent.name}/small`, { recursive: true });
 
     for (const photo of photos) {
-      const photoPath = `${ROOT}/${photoDirent.name}/${photo.name}`
+      const photoPath = `${ROOT}/${photoDirent.name}/${photo.name}`;
 
       if(photo.isDirectory()) {
         continue;
@@ -50,10 +43,24 @@ try {
         .toFile(`${ROOT}/${photoDirent.name}/small/${photo.name}`, function(err) {
       });
 
-      console.log(photo.name + " hotovo")
+      photoList.push(`./${ROOT}/${photoDirent.name}/small/${photo.name}`);
+
+      console.log(`${ROOT}/${photoDirent.name}/small/${photo.name}`);
     }
+  }
+
+  var photoString = "";
+
+  for (let i = 0; i < photoList.length; i++) {
+
+    photoString = photoString + `"${photoList[i]}", `;
     
   }
+
+  var photoString = "var photos = [" + photoString + "];";
+
+  const List = writeFile('./html/photoList.js', photoString);
+
 } 
 catch (err) {
 console.error(err);
