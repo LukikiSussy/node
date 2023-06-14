@@ -43,7 +43,7 @@ try {
         .toFile(`${ROOT}/${photoDirent.name}/small/${photo.name}`, function(err) {
       });
 
-      photoList.push(`./${ROOT}/${photoDirent.name}/small/${photo.name}`);
+      photoList.push(`../${ROOT}/${photoDirent.name}/small/${photo.name}`);
 
       console.log(`${ROOT}/${photoDirent.name}/small/${photo.name}`);
     }

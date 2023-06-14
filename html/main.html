@@ -20,7 +20,6 @@
 
     <body>
         <div id="container">
-
         </div>
  
     </body>
@@ -28,12 +27,14 @@
     <script src="photoList.js"></script>
  
     <script>
+        var i = 0;
         for (const photo of photos) {
-            const newPhoto = document.createElement("div");
-            console.log(photo)
+            const newPhoto = document.createElement("img");
+            newPhoto.id=`photo_${i}`;
             newPhoto.src=photo;
             newPhoto.classList.add('photo');
             document.getElementById("container").appendChild(newPhoto);
+            i++;
         }
 
     </script>
